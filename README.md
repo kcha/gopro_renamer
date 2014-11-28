@@ -9,22 +9,25 @@ which I found be unintuitive.
 For example:
 Here are two sets of videos (0892 and 0893) that were broken up into chapters by
 the camera and one single video (0891):
- * GOPR0891.mp4
- * GOPR0892.mp4
- * GOPR0893.mp4
- * GP010892.mp4
- * GP010893.mp4
- * GP020893.mp4
+~~~~
+GOPR0891.mp4
+GOPR0892.mp4
+GOPR0893.mp4
+GP010892.mp4
+GP010893.mp4
+GP020893.mp4
+~~~~
 
-I would prefer to see GP010892.mp4 to come after GOPR0892.mp4. For example,
+I would prefer to see `GP010892.mp4` to come after `GOPR0892.mp4`. For example,
 files could be renamed as the following:
- * GOPR0891_1.mp4
- * GOPR0892_1.mp4
- * GOPR0892_2.mp4
- * GOPR0893_1.mp4
- * GOPR0893_2.mp4
- * GOPR0893_3.mp4
-
+~~~~
+GOPR0891.mp4 -> GOPR0891_1.mp4
+GOPR0892.mp4 -> GOPR0892_1.mp4
+GP010892.mp4 -> GOPR0892_2.mp4
+GOPR0893.mp4 -> GOPR0893_1.mp4
+GP010893.mp4 -> GOPR0893_2.mp4
+GP020893.mp4 -> GOPR0893_3.mp4
+~~~~
 Usage
 -----
 
