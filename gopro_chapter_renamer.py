@@ -25,10 +25,12 @@ import sys
 import os
 from optparse import OptionParser
 
+__version__ = "0.1"
+
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
     desc = "Rename GoPro video files"
-    parser = OptionParser(usage = usage, description = desc)
+    parser = OptionParser(usage = usage, description = desc, version = __version__)
     parser.add_option('-s', '--start', type = "int", default = 1,
             dest = "startnum", 
             help = "Starting chapter number [%default]")
