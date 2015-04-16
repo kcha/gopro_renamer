@@ -69,9 +69,9 @@ def main():
 
     count = 0
     for myfile in os.listdir(args[0]):
-        if myfile.endswith(".mp4"):
+        if ( myfile.endswith(".mp4") or myfile.endswith(".MP4") ):
             
-            first = re.match(r"GOPR(\d{4})\.mp4", myfile)
+            first = re.match(r"GOPR(\d{4})\.[Mm][Pp]4" , myfile)
 
             if first:
                 num = resize_chapter(opts.startnum)
@@ -81,7 +81,7 @@ def main():
                 count += 1
             else:
 
-                chapter = re.match(r"GP(\d{2})(\d{4})\.mp4", myfile)
+                chapter = re.match(r"GP(\d{2})(\d{4})\.[Mm][Pp]4", myfile)
                 if chapter:
                     num = resize_chapter(opts.startnum + int(chapter.group(1)))
                     newchapter = opts.prefix + chapter.group(2) + "_" + num + ".mp4"
