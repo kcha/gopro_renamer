@@ -25,7 +25,7 @@ import sys
 import os
 from optparse import OptionParser
 
-__version__ = "0.1"
+__version__ = "0.1.1"
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
