@@ -4,21 +4,21 @@ GoPro Chaptered Video File Renamer
 This script alters the naming convention of chaptered videos created by GoPro
 Hero3 cameras (see
 http://gopro.com/support/articles/hero3-and-hero3-file-naming-convention),
-which I found be unintuitive. 
+which I found to be unintuitive. 
 
 For example:
 Here are two sets of videos (0892 and 0893) that were broken up into chapters by
 the camera and one single video (0891):
 ~~~~
-GOPR0891.mp4
-GOPR0892.mp4
-GOPR0893.mp4
-GP010892.mp4
-GP010893.mp4
-GP020893.mp4
+GOPR0891.mp4    <- single video
+GOPR0892.mp4    <- multi-video A1
+GOPR0893.mp4    <- multi-video B1
+GP010892.mp4    <- multi-video A2
+GP010893.mp4    <- multi-video B2
+GP020893.mp4    <- multi-video B3
 ~~~~
 
-I would prefer to see `GP010892.mp4` to come after `GOPR0892.mp4`. For example,
+When sorted, I would prefer to see `GP010892.mp4` to come after `GOPR0892.mp4`. For example,
 files could be renamed as the following:
 ~~~~
 GOPR0891.mp4 -> GOPR0891_1.mp4
