@@ -54,10 +54,9 @@ def getoptions():
     return (opts, args)
 
 def rename(dir, old, new):
-    if opts.test:
-        print "%s -> %s" % (dir + "/" + old, dir + "/" + new)
-    else:
+    if not opts.test:
         os.rename(dir + "/" + old, dir + "/" + new)
+    print "%s -> %s" % (dir + "/" + old, dir + "/" + new)
     
 def resize_chapter(num):
     return '{0:0{1}d}'.format(num, opts.size)
