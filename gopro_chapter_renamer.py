@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from __future__ import print_function
 import re
 import sys
 import os
 from optparse import OptionParser
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
@@ -47,7 +48,7 @@ def getoptions():
     (opts, args) = parser.parse_args()
     
     if len(args) < 1: 
-        print >> sys.stderr, "Error: missing input folder\n"
+        print("Error: missing input folder\n", file=sys.stderr)
         parser.print_help()
         exit(-1)
  
@@ -56,7 +57,7 @@ def getoptions():
 def rename(dir, old, new):
     if not opts.test:
         os.rename(dir + "/" + old, dir + "/" + new)
-    print "%s -> %s" % (dir + "/" + old, dir + "/" + new)
+    print("%s -> %s" % (dir + "/" + old, dir + "/" + new))
     
 def resize_chapter(num):
     return '{0:0{1}d}'.format(num, opts.size)
@@ -64,7 +65,7 @@ def resize_chapter(num):
 def main():
 
     if opts.test:
-        print "DRY RUN"
+        print("DRY RUN")
 
     count = 0
     for myfile in os.listdir(args[0]):
@@ -88,7 +89,7 @@ def main():
                     rename(args[0], myfile, newchapter)
                     count += 1
 
-    print >> sys.stderr, "Renamed %d files" % count
+    print("Renamed %d files" % count, file=sys.stderr)
 
 if __name__ == '__main__':
     (opts, args) = getoptions()

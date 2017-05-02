@@ -31,7 +31,7 @@ GP020893.mp4 -> GOPR0893_3.mp4
 Usage
 -----
 
-The script was written in Python (2.6+). To run:
+The script was written in Python (2.7+ and 3.3+). To run:
 
 ~~~~
 python gopro_chapter_renamer.py folder_containing_gopro_videos
