@@ -31,7 +31,8 @@ __version__ = "0.3.0"
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
-    desc = "Rename GoPro video files"
+    desc = "Rename GoPro video files. Renaming cannot be undone. Use at" + \
+           " your own risk. To perform a test run, use option -t."
     parser = argparse.ArgumentParser(description = desc, version = __version__)
     parser.add_argument('gopro_dir', nargs=1,
                         help='GoPro video directory')
