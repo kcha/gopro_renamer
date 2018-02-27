@@ -2,8 +2,8 @@ GoPro Chaptered Video File Renamer
 ==================================
 
 This script alters the naming convention of chaptered videos created by GoPro
-Hero3 cameras (see
-http://gopro.com/support/articles/hero3-and-hero3-file-naming-convention),
+Hero3+ cameras (see
+https://gopro.com/help/articles/question_answer/GoPro-Camera-File-Naming-Convention),
 which I found to be unintuitive. 
 
 For example:
@@ -42,7 +42,7 @@ GoPro's naming convention, and rename them accordingly.
 
 Non-chaptered videos will be renamed as well.
 
-Renaming cannot be undone!
+Renaming cannot be undone! A log of changes will be saved in the file `<gopro_directory>/rename.log`.
 
 Options
 -------

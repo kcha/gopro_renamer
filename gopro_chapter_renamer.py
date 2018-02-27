@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2014 Kevin Ha
+# Copyright (c) 2014,2018 Kevin Ha
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,73 +24,93 @@ from __future__ import print_function
 import re
 import sys
 import os
-from optparse import OptionParser
+import argparse
+import datetime
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
     desc = "Rename GoPro video files"
-    parser = OptionParser(usage = usage, description = desc, version = __version__)
-    parser.add_option('-s', '--start', type = "int", default = 1,
+    parser = argparse.ArgumentParser(description = desc, version = __version__)
+    parser.add_argument('gopro_dir', nargs=1,
+                        help='GoPro video directory')
+    parser.add_argument('-s', '--start', type = int, default = 1,
             dest = "startnum", 
-            help = "Starting chapter number [%default]")
-    parser.add_option('-p', '--prefix', type = "string", default = "GOPR",
+            help = "Starting chapter number [%(default)s]")
+    parser.add_argument('-p', '--prefix', type = str, default = "GOPR",
             dest = "prefix",
-            help = "Filename prefix [%default]")
-    parser.add_option('-t', '--test', action = "store_true", dest = "test",
+            help = "Prefix of renamed files [%(default)s]")
+    parser.add_argument('-t', '--test', action = "store_true", dest = "test",
             default = False,
-            help = "Perform dry run for testing (no renaming will take place) [%default]")
-    parser.add_option("-n", type = "int", default = 3,
+            help = "Perform dry run for testing (no renaming will take place) [%(default)s]")
+    parser.add_argument("-n", type = int, default = 3,
             dest = "size",
             help = "Number of digits for chapter number (e.g. if -n is 2, then chapters will"
-            " be 01, 02, etc.) [%default]")
-    (opts, args) = parser.parse_args()
+            " be 01, 02, etc.) [%(default)s]")
+    parser.add_argument("-e", "--ext", type = str, default = 'MP4',
+            dest = "ext",
+            help = "Extension of files to rename (case insensitive) [%(default)s]")
+    args = parser.parse_args()
     
-    if len(args) < 1: 
-        print("Error: missing input folder\n", file=sys.stderr)
-        parser.print_help()
-        exit(-1)
- 
-    return (opts, args)
+    return args
 
-def rename(dir, old, new):
-    if not opts.test:
+def rename(dir, old, new, dryrun, fout):
+    log = "%s -> %s" % (dir + "/" + old, dir + "/" + new) 
+    if not dryrun:
         os.rename(dir + "/" + old, dir + "/" + new)
-    print("%s -> %s" % (dir + "/" + old, dir + "/" + new))
+    if fout is not None:
+        fout.write("%s -> %s\n" % (old, new))
+    print(log)
     
-def resize_chapter(num):
-    return '{0:0{1}d}'.format(num, opts.size)
+def resize_chapter(num, size):
+    return '{0:0{1}d}'.format(num, size)
+
+def has_ext(f, ext):
+    return bool(re.search(ext, f, re.I))
 
 def main():
+    args = getoptions()
 
-    if opts.test:
-        print("DRY RUN")
+    if args.test:
+        print("**DRY RUN**")
 
+    logfile = args.gopro_dir[0] + "/rename.log"
+    fout = open(logfile, 'w')
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    fout.write("[%s v%s - %s]\n" % (sys.argv[0], __version__, now))
     count = 0
-    for myfile in os.listdir(args[0]):
-        if ( myfile.endswith(".mp4") or myfile.endswith(".MP4") ):
+    for myfile in os.listdir(args.gopro_dir[0]):
+        if has_ext(myfile, args.ext):
             
-            first = re.match(r"GOPR(\d{4})\.[Mm][Pp]4" , myfile)
+            first = re.match(r"GOPR(\d{4})\." + args.ext, myfile, re.I)
 
             if first:
-                num = resize_chapter(opts.startnum)
-                newfirst = opts.prefix + first.group(1) + "_" + num + ".mp4"
+                num = resize_chapter(args.startnum, args.size)
+                newfirst = args.prefix + first.group(1) + "_" + num + "." + \
+                           args.ext
 
-                rename(args[0], myfile, newfirst) 
+                rename(args.gopro_dir[0], myfile, newfirst, args.test, fout) 
                 count += 1
             else:
 
-                chapter = re.match(r"GP(\d{2})(\d{4})\.[Mm][Pp]4", myfile)
+                chapter = re.match(r"GP(\d{2})(\d{4})\." + args.ext, myfile,
+                                   re.I)
                 if chapter:
-                    num = resize_chapter(opts.startnum + int(chapter.group(1)))
-                    newchapter = opts.prefix + chapter.group(2) + "_" + num + ".mp4"
+                    num = resize_chapter(args.startnum + int(chapter.group(1)),
+                                         args.size)
+                    newchapter = args.prefix + chapter.group(2) + "_" + num + \
+                                 "." + args.ext
 
-                    rename(args[0], myfile, newchapter)
+                    rename(args.gopro_dir[0], myfile, newchapter, args.test,
+                           fout)
                     count += 1
-
+    fout.close()
     print("Renamed %d files" % count, file=sys.stderr)
+    if count > 0:
+        print("Change log saved in %s" % logfile, file=sys.stderr)
+    else:
+        os.remove(logfile)
 
 if __name__ == '__main__':
-    (opts, args) = getoptions()
     main()
