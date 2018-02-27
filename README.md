@@ -53,8 +53,8 @@ For additional options, run:
 python gopro_chapter_renamer.py -h
 ~~~~
 
-To change the starting number (default is 1), use the option `-s`.
-
-To change the filename prefix (default is GOPR), use the option `-p`.
+  * To change the starting number (default is 1), use the option `-s`.
+  * To change the filename prefix (default is GOPR), use `-p`.
+  * To rename files with a different extension (default is MP4), use `-e`.
 
 To perform a dry run, use the option `-t`.
