@@ -27,13 +27,14 @@ import os
 import argparse
 import datetime
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
     desc = "Rename GoPro video files. Renaming cannot be undone. Use at" + \
            " your own risk. To perform a test run, use option -t."
-    parser = argparse.ArgumentParser(description = desc, version = __version__)
+    parser = argparse.ArgumentParser(description = desc)
+    parser.add_argument('--version', action = 'version', version = __version__)
     parser.add_argument('gopro_dir', nargs=1,
                         help='GoPro video directory')
     parser.add_argument('-s', '--start', type = int, default = 1,
