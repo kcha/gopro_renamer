@@ -65,7 +65,9 @@ def rename(dir, old, new, dryrun, fout):
         fout.write("%s -> %s\n" % (old, new))
     print(log)
     
-def resize_chapter(num, size):
+def resize_chapter(num, size, new_format=False):
+    if new_format:
+        num -= 1
     return '{0:0{1}d}'.format(num, size)
 
 def has_ext(f, ext):
@@ -85,23 +87,21 @@ def main():
     for myfile in os.listdir(args.gopro_dir[0]):
         if has_ext(myfile, args.ext):
             
-            first = re.match(r"GOPR(\d{4})\." + args.ext, myfile, re.I)
+            first = re.match(r"(GOPR|GH01)(\d{4})\." + args.ext, myfile, re.I)
 
             if first:
                 num = resize_chapter(args.startnum, args.size)
-                newfirst = args.prefix + first.group(1) + "_" + num + "." + \
-                           args.ext
+                newfirst = args.prefix + first.group(2) + "_" + num + "." + args.ext
 
                 rename(args.gopro_dir[0], myfile, newfirst, args.test, fout) 
                 count += 1
             else:
 
-                chapter = re.match(r"GP(\d{2})(\d{4})\." + args.ext, myfile,
-                                   re.I)
+                chapter = re.match(r"(GP|GH)(\d{2})(\d{4})\." + args.ext, myfile, re.I)
+                new_format = myfile[0:2] == 'GH'
                 if chapter:
-                    num = resize_chapter(args.startnum + int(chapter.group(1)),
-                                         args.size)
-                    newchapter = args.prefix + chapter.group(2) + "_" + num + \
+                    num = resize_chapter(args.startnum + int(chapter.group(2)), args.size, new_format)
+                    newchapter = args.prefix + chapter.group(3) + "_" + num + \
                                  "." + args.ext
 
                     rename(args.gopro_dir[0], myfile, newchapter, args.test,
