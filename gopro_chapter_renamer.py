@@ -87,7 +87,7 @@ def main():
     for myfile in os.listdir(args.gopro_dir[0]):
         if has_ext(myfile, args.ext):
             
-            first = re.match(r"(GOPR|GH01)(\d{4})\." + args.ext, myfile, re.I)
+            first = re.match(r"(GOPR|GH01|GX01)(\d{4})\." + args.ext, myfile, re.I)
 
             if first:
                 num = resize_chapter(args.startnum, args.size)
@@ -97,7 +97,7 @@ def main():
                 count += 1
             else:
 
-                chapter = re.match(r"(GP|GH)(\d{2})(\d{4})\." + args.ext, myfile, re.I)
+                chapter = re.match(r"(GP|GH|GX)(\d{2})(\d{4})\." + args.ext, myfile, re.I)
                 new_format = myfile[0:2] == 'GH'
                 if chapter:
                     num = resize_chapter(args.startnum + int(chapter.group(2)), args.size, new_format)
