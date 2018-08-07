@@ -27,7 +27,7 @@ import os
 import argparse
 import datetime
 
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
