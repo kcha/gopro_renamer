@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/morrislab/qapa.svg?branch=master)](https://travis-ci.org/morrislab/qapa)
+[![Build Status](https://travis-ci.org/kcha/gopro_renamer.svg?branch=master)](https://travis-ci.org/kcha/gopro_renamer)
 
 # GoPro Chaptered Video File Renamer
 
