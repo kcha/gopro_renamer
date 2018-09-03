@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/morrislab/qapa.svg?branch=master)](https://travis-ci.org/morrislab/qapa)
 
-GoPro Chaptered Video File Renamer
-==================================
+# GoPro Chaptered Video File Renamer
 
 This script alters the naming convention of chaptered videos created by GoPro
 Hero3+ cameras (see
@@ -31,9 +30,8 @@ GP010893.mp4 -> GOPR0893_2.mp4
 GP020893.mp4 -> GOPR0893_3.mp4
 ~~~~
 
-Installation
-------------
-The script was written in Python (2.7+ and 3.3+), and can be directly run:
+## Installation
+
 If you want to install it with pip for easy access, run:
 ~~~~
 pip install git+https://github.com/kcha/gopro_renamer#egg=gopro_renamer
@@ -49,6 +47,7 @@ you can also run it directly:
 ~~~~
 python gopro_chapter_renamer.py folder_containing_gopro_videos
 ~~~~
+
 Usage
 -----
 To use the script, run:
