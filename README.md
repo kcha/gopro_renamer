@@ -28,13 +28,30 @@ GOPR0893.mp4 -> GOPR0893_1.mp4
 GP010893.mp4 -> GOPR0893_2.mp4
 GP020893.mp4 -> GOPR0893_3.mp4
 ~~~~
-Usage
------
 
-The script was written in Python (2.7+ and 3.3+). To run:
+Installation
+------------
+The script was written in Python (2.7+ and 3.3+), and can be directly run:
+If you want to install it with pip for easy access, run:
+~~~~
+pip install git+https://github.com/kcha/gopro_renamer#egg=gopro_renamer
+~~~~
 
+To install manually, download the repository and run:
+~~~~
+python setup.py install
+~~~~
+
+If you don't want to install the script to your environment,
+you can also run it directly:
 ~~~~
 python gopro_chapter_renamer.py folder_containing_gopro_videos
+~~~~
+Usage
+-----
+To use the script, run:
+~~~~
+gopro_renamer folder_containing_gopro_videos
 ~~~~
 
 The script will search inside the specified folder for `mp4` files that follow
