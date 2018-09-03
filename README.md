@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/morrislab/qapa.svg?branch=master)](https://travis-ci.org/morrislab/qapa)
+
 GoPro Chaptered Video File Renamer
 ==================================
 
@@ -75,3 +77,6 @@ python gopro_chapter_renamer.py -h
   * To rename files with a different extension (default is MP4), use `-e`.
 
 To perform a dry run, use the option `-t`.
+
+_Thank you to all 
+[contributors](https://github.com/kcha/gopro_renamer/pulls?q=is%3Apr+is%3Aclosed) who have helped improve this tool!_
