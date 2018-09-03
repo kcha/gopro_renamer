@@ -6,4 +6,4 @@ python:
     - "3.5"
     - "3.6"
 install:
-    travis_retry python setup.py intall
+    travis_retry python setup.py install
