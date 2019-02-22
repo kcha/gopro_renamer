@@ -68,7 +68,7 @@ Options
 For additional options, run:
 
 ~~~~
-python gopro_chapter_renamer.py -h
+gopro_renamer -h
 ~~~~
 
   * To change the starting number (default is 1), use the option `-s`.
