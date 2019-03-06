@@ -45,7 +45,7 @@ python setup.py install
 If you don't want to install the script to your environment,
 you can also run it directly:
 ~~~~
-python gopro_chapter_renamer.py folder_containing_gopro_videos
+python gopro_renamer.py folder_containing_gopro_videos
 ~~~~
 
 Usage
