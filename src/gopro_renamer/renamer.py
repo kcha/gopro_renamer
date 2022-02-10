@@ -104,7 +104,9 @@ def resize_chapter(num: int, size: int, new_format: bool = False) -> str:
 
 def has_ext(file: Path, ext: str) -> bool:
     """Check if file contains extension"""
-    return bool(re.search(ext, file.suffix, re.I))
+    if not ext.startswith('.'):
+        ext = f'.{ext}'
+    return ext.upper() == file.suffix.upper()
 
 
 def main():
