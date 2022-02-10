@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import importlib.metadata
 from pathlib import Path
 import re
 import argparse
@@ -27,7 +28,7 @@ import logging
 
 logger = logging.getLogger('gopro-renamer')
 
-__version__ = "0.4.0"
+__version__ = importlib.metadata.version('gopro_renamer')
 
 def getoptions():
     usage = "usage: python %prog [options] folder_containing_gopro_videos"
