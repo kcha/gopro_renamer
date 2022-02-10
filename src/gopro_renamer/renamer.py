@@ -59,18 +59,24 @@ def getoptions():
 
     return args
 
-def rename(old, new, dryrun):
+def rename(old: Path, new: Path, dryrun: bool) -> None:
+    """Rename file
+    """
     msg = f"{old} -> {new}"
     if not dryrun:
         old.rename(new)
     logger.info(msg)
 
-def resize_chapter(num, size, new_format=False):
+def resize_chapter(num: int, size: int, new_format: bool=False) -> str:
+    """Reformat chapter numbering
+    """
     if new_format:
         num -= 1
     return '{0:0{1}d}'.format(num, size)
 
-def has_ext(file, ext):
+def has_ext(file: Path, ext: str) -> bool:
+    """Check if file contains extension
+    """
     return bool(re.search(ext, file.suffix, re.I))
 
 def main():
