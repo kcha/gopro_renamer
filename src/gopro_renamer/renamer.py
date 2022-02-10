@@ -26,18 +26,20 @@ import re
 import argparse
 import logging
 
-logger = logging.getLogger("gopro-renamer")
+PROG = 'gopro-renamer'
+
+logger = logging.getLogger(PROG)
 
 __version__ = importlib.metadata.version("gopro_renamer")
 
 
 def getoptions():
-    usage = "usage: python %prog [options] folder_containing_gopro_videos"
+    usage = "%(prog)s [options] folder_containing_gopro_videos"
     desc = (
         "Rename GoPro video files. Renaming cannot be undone. Use at"
         + " your own risk. To perform a test run, use option -t."
     )
-    parser = argparse.ArgumentParser(description=desc)
+    parser = argparse.ArgumentParser(usage=usage, description=desc)
     parser.add_argument("-v", "--version", action="version", version=__version__)
     parser.add_argument("gopro_dir", nargs=1, type=Path, help="GoPro video directory")
     parser.add_argument(
@@ -97,7 +99,7 @@ def resize_chapter(num: int, size: int, new_format: bool = False) -> str:
     """Reformat chapter numbering"""
     if new_format:
         num -= 1
-    return "{0:0{1}d}".format(num, size)
+    return f'{num:0{size}d}'
 
 
 def has_ext(file: Path, ext: str) -> bool:
@@ -116,7 +118,7 @@ def main():
         handlers=[logging.FileHandler(logfile), logging.StreamHandler()],
     )
 
-    logger.info(f"gopro-renamer v{__version__}")
+    logger.info("gopro-renamer v%s", __version__)
 
     if args.test:
         logger.info("**DRY RUN**")
@@ -152,9 +154,11 @@ def main():
 
                     rename(myfile, newchapter, args.test)
                     count += 1
+        else:
+            logger.info('Skipping %s', myfile)
 
-    logger.info(f"Renamed {count} files")
-    logger.info(f"Change log saved in {logfile}")
+    logger.info("Renamed %d files", count)
+    logger.info("Change log saved in %s", logfile)
 
 
 if __name__ == "__main__":
