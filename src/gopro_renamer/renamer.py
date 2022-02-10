@@ -20,9 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from pathlib import Path
 import re
-import sys
-import os
 import argparse
 import logging
 
@@ -37,6 +36,7 @@ def getoptions():
     parser = argparse.ArgumentParser(description = desc)
     parser.add_argument('-v', '--version', action = 'version', version = __version__)
     parser.add_argument('gopro_dir', nargs=1,
+                        type=Path,
                         help='GoPro video directory')
     parser.add_argument('-s', '--start', type = int, default = 1,
             dest = "startnum",
@@ -58,24 +58,24 @@ def getoptions():
 
     return args
 
-def rename(dir, old, new, dryrun):
-    log = "%s -> %s" % (dir + "/" + old, dir + "/" + new)
+def rename(old, new, dryrun):
+    msg = f"{old} -> {new}"
     if not dryrun:
-        os.rename(dir + "/" + old, dir + "/" + new)
-    logger.info(log)
+        old.rename(new)
+    logger.info(msg)
 
 def resize_chapter(num, size, new_format=False):
     if new_format:
         num -= 1
     return '{0:0{1}d}'.format(num, size)
 
-def has_ext(f, ext):
-    return bool(re.search(ext, f, re.I))
+def has_ext(file, ext):
+    return bool(re.search(ext, file.suffix, re.I))
 
 def main():
     args = getoptions()
 
-    logfile = args.gopro_dir[0] + '/rename.log'
+    logfile = args.gopro_dir[0] / 'rename.log'
 
     logging.basicConfig(level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
@@ -91,27 +91,27 @@ def main():
         logger.info("**DRY RUN**")
 
     count = 0
-    for myfile in os.listdir(args.gopro_dir[0]):
+    for myfile in args.gopro_dir[0].iterdir():
         if has_ext(myfile, args.ext):
 
-            first = re.match(r"(GOPR|GH01|GX01)(\d{4})\." + args.ext, myfile, re.I)
+            first = re.match(r"(GOPR|GH01|GX01)(\d{4})\." + args.ext,
+                    myfile.name, re.I)
 
             if first:
                 num = resize_chapter(args.startnum, args.size)
-                newfirst = args.prefix + first.group(2) + "_" + num + "." + args.ext
+                newfirst = args.gopro_dir[0] / f'{args.prefix}{first.group(2)}_{num}.{args.ext}'
 
-                rename(args.gopro_dir[0], myfile, newfirst, args.test )
+                rename(myfile, newfirst, args.test)
                 count += 1
             else:
-
-                chapter = re.match(r"(GP|GH|GX)(\d{2})(\d{4})\." + args.ext, myfile, re.I)
-                new_format = myfile[0:2] == 'GH'
+                chapter = re.match(r"(GP|GH|GX)(\d{2})(\d{4})\." + args.ext,
+                        myfile.name, re.I)
+                new_format = myfile.stem[0:2] == 'GH'
                 if chapter:
                     num = resize_chapter(args.startnum + int(chapter.group(2)), args.size, new_format)
-                    newchapter = args.prefix + chapter.group(3) + "_" + num + \
-                                 "." + args.ext
+                    newchapter = args.gopro_dir[0] / f'{args.prefix}{chapter.group(3)}_{num}.{args.ext}'
 
-                    rename(args.gopro_dir[0], myfile, newchapter, args.test)
+                    rename(myfile, newchapter, args.test)
                     count += 1
 
     logger.info(f"Renamed {count} files")
