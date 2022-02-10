@@ -25,6 +25,9 @@ import sys
 import os
 import argparse
 import datetime
+import logging
+
+logger = logging.getLogger('gopro-renamer')
 
 __version__ = "0.4.0"
 
@@ -62,7 +65,7 @@ def rename(dir, old, new, dryrun, fout):
         os.rename(dir + "/" + old, dir + "/" + new)
     if fout is not None:
         fout.write("%s -> %s\n" % (old, new))
-    print(log)
+    logger.info(log)
 
 def resize_chapter(num, size, new_format=False):
     if new_format:
@@ -75,8 +78,13 @@ def has_ext(f, ext):
 def main():
     args = getoptions()
 
+    logging.basicConfig(level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s')
+
+    logger.info(f'gopro-renamer v{__version__}')
+
     if args.test:
-        print("**DRY RUN**")
+        logger.info("**DRY RUN**")
 
     logfile = args.gopro_dir[0] + "/rename.log"
     fout = open(logfile, 'w')
@@ -107,9 +115,10 @@ def main():
                            fout)
                     count += 1
     fout.close()
-    print("Renamed %d files" % count, file=sys.stderr)
+
+    logger.info(f"Renamed {count} files")
     if count > 0:
-        print("Change log saved in %s" % logfile, file=sys.stderr)
+        logger.info(f"Change log saved in {logfile}")
     else:
         os.remove(logfile)
 
