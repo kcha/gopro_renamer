@@ -5,7 +5,7 @@
 This script alters the naming convention of chaptered videos created by GoPro
 Hero3+ cameras (see
 https://gopro.com/help/articles/question_answer/GoPro-Camera-File-Naming-Convention),
-which I found to be unintuitive. 
+which I found to be unintuitive.
 
 For example:
 Here are two sets of videos (0892 and 0893) that were broken up into chapters by
@@ -32,27 +32,22 @@ GP020893.mp4 -> GOPR0893_3.mp4
 
 ## Installation
 
-If you want to install it with pip for easy access, run:
+
+This software can be install via `pip`:
 ~~~~
-pip install git+https://github.com/kcha/gopro_renamer#egg=gopro_renamer
+pip install gopro_renamer
 ~~~~
 
-To install manually, download the repository and run:
+To install manually, clone this repository and run:
 ~~~~
-python setup.py install
-~~~~
-
-If you don't want to install the script to your environment,
-you can also run it directly:
-~~~~
-python gopro_renamer.py folder_containing_gopro_videos
+pip install .
 ~~~~
 
-Usage
------
+
+## Usage
 To use the script, run:
 ~~~~
-gopro_renamer folder_containing_gopro_videos
+gopro-renamer folder_containing_gopro_videos
 ~~~~
 
 The script will search inside the specified folder for `mp4` files that follow
@@ -60,15 +55,15 @@ GoPro's naming convention, and rename them accordingly.
 
 Non-chaptered videos will be renamed as well.
 
-Renaming cannot be undone! A log of changes will be saved in the file `<gopro_directory>/rename.log`.
+Renaming cannot be undone! A log of changes will be saved in the file
+`<gopro_directory>/rename.log`.
 
-Options
--------
+## Options
 
 For additional options, run:
 
 ~~~~
-gopro_renamer -h
+gopro-renamer -h
 ~~~~
 
   * To change the starting number (default is 1), use the option `-s`.
@@ -77,5 +72,6 @@ gopro_renamer -h
 
 To perform a dry run, use the option `-t`.
 
-_Thank you to all 
-[contributors](https://github.com/kcha/gopro_renamer/pulls?q=is%3Apr+is%3Aclosed) who have helped improve this tool!_
+_Thank you to all
+[contributors](https://github.com/kcha/gopro_renamer/pulls?q=is%3Apr+is%3Aclosed)
+who have helped improve this tool!_
