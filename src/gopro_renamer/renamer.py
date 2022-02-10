@@ -24,7 +24,6 @@ import re
 import sys
 import os
 import argparse
-import datetime
 import logging
 
 logger = logging.getLogger('gopro-renamer')
@@ -59,12 +58,10 @@ def getoptions():
 
     return args
 
-def rename(dir, old, new, dryrun, fout):
+def rename(dir, old, new, dryrun):
     log = "%s -> %s" % (dir + "/" + old, dir + "/" + new)
     if not dryrun:
         os.rename(dir + "/" + old, dir + "/" + new)
-    if fout is not None:
-        fout.write("%s -> %s\n" % (old, new))
     logger.info(log)
 
 def resize_chapter(num, size, new_format=False):
@@ -78,18 +75,21 @@ def has_ext(f, ext):
 def main():
     args = getoptions()
 
+    logfile = args.gopro_dir[0] + '/rename.log'
+
     logging.basicConfig(level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s')
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(logfile),
+            logging.StreamHandler()
+            ]
+        )
 
     logger.info(f'gopro-renamer v{__version__}')
 
     if args.test:
         logger.info("**DRY RUN**")
 
-    logfile = args.gopro_dir[0] + "/rename.log"
-    fout = open(logfile, 'w')
-    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    fout.write("[%s v%s - %s]\n" % (sys.argv[0], __version__, now))
     count = 0
     for myfile in os.listdir(args.gopro_dir[0]):
         if has_ext(myfile, args.ext):
@@ -100,7 +100,7 @@ def main():
                 num = resize_chapter(args.startnum, args.size)
                 newfirst = args.prefix + first.group(2) + "_" + num + "." + args.ext
 
-                rename(args.gopro_dir[0], myfile, newfirst, args.test, fout)
+                rename(args.gopro_dir[0], myfile, newfirst, args.test )
                 count += 1
             else:
 
@@ -111,16 +111,12 @@ def main():
                     newchapter = args.prefix + chapter.group(3) + "_" + num + \
                                  "." + args.ext
 
-                    rename(args.gopro_dir[0], myfile, newchapter, args.test,
-                           fout)
+                    rename(args.gopro_dir[0], myfile, newchapter, args.test)
                     count += 1
-    fout.close()
 
     logger.info(f"Renamed {count} files")
-    if count > 0:
-        logger.info(f"Change log saved in {logfile}")
-    else:
-        os.remove(logfile)
+    logger.info(f"Change log saved in {logfile}")
+
 
 if __name__ == '__main__':
     main()
