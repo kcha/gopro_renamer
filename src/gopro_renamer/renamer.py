@@ -121,6 +121,7 @@ def main():
     )
 
     logger.info("gopro-renamer v%s", __version__)
+    logger.info("Command: %s", args)
 
     if args.test:
         logger.info("**DRY RUN**")
