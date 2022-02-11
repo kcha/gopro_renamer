@@ -88,6 +88,6 @@ your own risk (see `LICENSE`).
 ## Acknowledgements
 
 _Thank you to all
-[contributors](https://github.com/kcha/gopro_renamer/pulls?q=is%3Apr+is%3Aclosed)
+[contributors](https://github.com/kcha/gopro_renamer/graphs/contributors)
 who have helped improve this tool!_
 
