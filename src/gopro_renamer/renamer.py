@@ -112,7 +112,7 @@ def has_ext(file: Path, ext: str) -> bool:
 def main():
     args = getoptions()
 
-    logfile = args.gopro_dir[0] / "rename.log"
+    logfile = args.gopro_dir[0] / "gopro-renamer.log"
 
     logging.basicConfig(
         level=logging.INFO,
