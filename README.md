@@ -52,7 +52,7 @@ pip install .
 ## Usage
 
 If desired, make a backup of your files before proceeding as your files will be
-irrevocably renamed.
+irrevocably renamed. You can also perform a dry-run by including the `-t` flag.
 
 To run the app:
 
@@ -72,14 +72,29 @@ A log of changes will be saved in the file `<gopro_directory>/gopro-renamer.log`
 For additional options, run:
 
 ~~~~
-gopro-renamer -h
+> gopro-renamer -h
+
+usage: renamer.py [options] folder_containing_gopro_videos
+
+Rename GoPro video files. Renaming cannot be undone. Use at your own risk. To perform a test
+run, use option -t.
+
+positional arguments:
+  gopro_dir             GoPro video directory
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  -s STARTNUM, --start STARTNUM
+                        Starting chapter number [1]
+  -p PREFIX, --prefix PREFIX
+                        Prefix of renamed files [GOPR]
+  -t, --test            Perform dry run for testing (no renaming will take place) [False]
+  -n SIZE               Number of digits for chapter number (e.g. if -n is 2, then chapters
+                        will be 01, 02, etc.) [3]
+  -e EXT, --ext EXT     Extension of files to rename (case insensitive) [MP4]
 ~~~~
 
-  * To change the starting number (default is 1), use the option `-s`.
-  * To change the filename prefix (default is GOPR), use `-p`.
-  * To rename files with a different extension (default is MP4), use `-e`.
-
-To perform a dry run, use the option `-t`.
 
 ## Disclaimer
 
