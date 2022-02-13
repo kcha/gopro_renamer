@@ -106,7 +106,7 @@ optional arguments:
 ## Disclaimer
 
 This is a personal project and not affiliated with GoPro. Use at your own risk
-(see `LICENSE`).
+(see [LICENSE](LICENSE)).
 
 ## Acknowledgements
 
