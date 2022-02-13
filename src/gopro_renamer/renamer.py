@@ -71,8 +71,8 @@ def getoptions():
         type=int,
         default=3,
         dest="size",
-        help="Number of digits for chapter number (e.g. if -n is 2, then chapters will"
-        " be 01, 02, etc.) [%(default)s]",
+        help="Number of leading zeroes for chapter number (e.g. if -n is 2, "
+        "then chapters will be 01, 02, etc.) [%(default)s]",
     )
     parser.add_argument(
         "-e",
