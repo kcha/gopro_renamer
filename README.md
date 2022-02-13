@@ -52,7 +52,7 @@ pip install .
 ## Usage
 
 If desired, make a backup of your files before proceeding as your files will be
-irrevocably renamed. You can also perform a dry-run by including the `-t` flag.
+irrevocably renamed. A dry run can also be performed by including the `-t` flag.
 
 To run the app:
 
@@ -66,6 +66,13 @@ GoPro's naming convention, and rename them accordingly.
 Non-chaptered videos will be renamed as well.
 
 A log of changes will be saved in the file `<gopro_directory>/gopro-renamer.log`.
+
+A set of dummy test files are provided in the folder `test_inputs` to perform a
+trial run:
+
+~~~~
+gopro-renamer test_inputs
+~~~~
 
 ## Options
 
@@ -90,8 +97,8 @@ optional arguments:
   -p PREFIX, --prefix PREFIX
                         Prefix of renamed files [GOPR]
   -t, --test            Perform dry run for testing (no renaming will take place) [False]
-  -n SIZE               Number of digits for chapter number (e.g. if -n is 2, then chapters
-                        will be 01, 02, etc.) [3]
+  -n SIZE              Number of leading zeroes for chapter number (e.g. if -n
+                        is 2, then chapters will be 01, 02, etc.) [3]
   -e EXT, --ext EXT     Extension of files to rename (case insensitive) [MP4]
 ~~~~
 
