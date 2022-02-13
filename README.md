@@ -1,4 +1,5 @@
 ![Build Status](https://github.com/kcha/gopro_renamer/actions/workflows/python-app.yml/badge.svg)
+[![PyPI version](https://badge.fury.io/py/gopro-renamer.svg)](https://badge.fury.io/py/gopro-renamer)
 
 # GoPro Chaptered Video File Renamer
 
