@@ -26,7 +26,7 @@ import re
 import argparse
 import logging
 
-PROG = 'gopro-renamer'
+PROG = "gopro-renamer"
 
 logger = logging.getLogger(PROG)
 
@@ -99,13 +99,13 @@ def resize_chapter(num: int, size: int, new_format: bool = False) -> str:
     """Reformat chapter numbering"""
     if new_format:
         num -= 1
-    return f'{num:0{size}d}'
+    return f"{num:0{size}d}"
 
 
 def has_ext(file: Path, ext: str) -> bool:
     """Check if file contains extension"""
-    if not ext.startswith('.'):
-        ext = f'.{ext}'
+    if not ext.startswith("."):
+        ext = f".{ext}"
     return ext.upper() == file.suffix.upper()
 
 
@@ -158,7 +158,7 @@ def main():
                     rename(myfile, newchapter, args.test)
                     count += 1
         else:
-            logger.info('Skipping %s', myfile)
+            logger.info("Skipping %s", myfile)
 
     logger.info("Renamed %d files", count)
     logger.info("Change log saved in %s", logfile)
