@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kcha/gopro_renamer.svg?branch=master)](https://travis-ci.org/kcha/gopro_renamer)
+![Build Status](https://github.com/kcha/gopro_renamer/actions/workflows/python-app.yml/badge.svg)
 
 # GoPro Chaptered Video File Renamer
 
