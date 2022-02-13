@@ -1,13 +1,14 @@
-2022-02-10 23:08:51,412 - INFO - gopro-renamer v0.4.0
-2022-02-10 23:08:51,412 - INFO - Command: Namespace(ext='MP4', gopro_dir=[PosixPath('test_input')], prefix='GOPR', size=3, startnum=1, test=False)
-2022-02-10 23:08:51,413 - INFO - test_input/GOPR0891.mp4 -> test_input/GOPR0891_001.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GOPR0892.mp4 -> test_input/GOPR0892_001.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GOPR0893.mp4 -> test_input/GOPR0893_001.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GP010892.mp4 -> test_input/GOPR0892_002.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GP010893.mp4 -> test_input/GOPR0893_002.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GH010059.MP4 -> test_input/GOPR0059_001.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GH010060.MP4 -> test_input/GOPR0060_001.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GH020059.MP4 -> test_input/GOPR0059_002.MP4
-2022-02-10 23:08:51,413 - INFO - test_input/GP020893.mp4 -> test_input/GOPR0893_003.MP4
-2022-02-10 23:08:51,413 - INFO - Renamed 9 files
-2022-02-10 23:08:51,413 - INFO - Change log saved in test_input/gopro-renamer.log
+2022-02-12 20:52:58,901 - INFO - gopro-renamer v0.5.0
+2022-02-12 20:52:58,901 - INFO - Command: Namespace(ext='MP4', gopro_dir=[PosixPath('test_input')], prefix='GOPR', size=3, startnum=1, test=False)
+2022-02-12 20:52:58,902 - INFO - test_input/GOPR0891.mp4 -> test_input/GOPR0891_001.MP4
+2022-02-12 20:52:58,902 - INFO - test_input/GOPR0892.mp4 -> test_input/GOPR0892_001.MP4
+2022-02-12 20:52:58,902 - INFO - test_input/GOPR0893.mp4 -> test_input/GOPR0893_001.MP4
+2022-02-12 20:52:58,902 - INFO - test_input/GP010892.mp4 -> test_input/GOPR0892_002.MP4
+2022-02-12 20:52:58,903 - INFO - test_input/GP010893.mp4 -> test_input/GOPR0893_002.MP4
+2022-02-12 20:52:58,903 - INFO - test_input/GH010059.MP4 -> test_input/GOPR0059_001.MP4
+2022-02-12 20:52:58,903 - INFO - test_input/GH010060.MP4 -> test_input/GOPR0060_001.MP4
+2022-02-12 20:52:58,903 - INFO - Skipping test_input/gopro-renamer.log
+2022-02-12 20:52:58,903 - INFO - test_input/GH020059.MP4 -> test_input/GOPR0059_002.MP4
+2022-02-12 20:52:58,903 - INFO - test_input/GP020893.mp4 -> test_input/GOPR0893_003.MP4
+2022-02-12 20:52:58,903 - INFO - Renamed 9 files
+2022-02-12 20:52:58,903 - INFO - Change log saved in test_input/gopro-renamer.log
