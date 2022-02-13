@@ -39,7 +39,7 @@ GP020893.mp4 -> GOPR0893_3.mp4
 Install via `pip`:
 
 ~~~~
-pip install gopro_renamer
+pip install gopro-renamer
 ~~~~
 
 To install manually, clone this repository and run:
