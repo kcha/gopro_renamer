@@ -106,7 +106,7 @@ optional arguments:
 ## Disclaimer
 
 This is a personal project and not affiliated with GoPro. Use at your own risk
-(see [LICENSE](LICENSE)).
+(see [LICENSE](https://github.com/kcha/gopro_renamer/blob/main/LICENSE)).
 
 ## Acknowledgements
 
