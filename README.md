@@ -97,7 +97,7 @@ optional arguments:
   -p PREFIX, --prefix PREFIX
                         Prefix of renamed files [GOPR]
   -t, --test            Perform dry run for testing (no renaming will take place) [False]
-  -n SIZE              Number of leading zeroes for chapter number (e.g. if -n
+  -n SIZE               Number of leading zeroes for chapter number (e.g. if -n
                         is 2, then chapters will be 01, 02, etc.) [3]
   -e EXT, --ext EXT     Extension of files to rename (case insensitive) [MP4]
 ~~~~
